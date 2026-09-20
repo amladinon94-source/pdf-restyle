@@ -107,29 +107,53 @@ temperaturas, materiales, herramientas, advertencias, marcas.
 
 ## Paso 3 · La entrevista
 
-Siempre las mismas seis preguntas, en el mismo orden. Usa AskUserQuestion, en
-**dos pantallas**. Lee el PDF primero, así cada pregunta llega con una
-recomendación ya puesta como primera opción.
+Siempre las mismas preguntas, en el mismo orden. Lee el PDF primero, así cada
+una llega con una recomendación ya puesta como primera opción y aceptar todo es
+dar Enter.
 
-**Pantalla 1 — Identidad**
-1. **Estilo visual** — tres de `~/.claude/pdf-restyle/styles/` elegidos según el
-   contenido, más "tengo una referencia"
-2. **Formato** — A4 vertical · Carta · Cuadrado 200mm · Digital 16:9
-3. **Tono** — las voces de `~/.claude/pdf-restyle/voices/`
-4. **Tratamiento** — Tú · Usted · Impersonal
+**El error que hay que evitar: preguntar por presets.** «Elige uno de estos
+cuatro estilos» es un menú, no una pregunta de dirección. Pregunta por los
+**ejes**; el preset se compone después a partir de las respuestas. Un nombre de
+preset nunca es la pregunta.
 
-**Pantalla 2 — Aparato editorial**
-5. **Elementos** *(multi)* — Portada · Tabla de contenido · Folios · Cornisas ·
+### 3.0 · Antes que nada: ¿hay una referencia?
+
+Pregunta si tiene una referencia visual — una imagen, un PDF, un link, una
+publicación. **Si la hay, gana sobre todo lo demás:** extrae de ahí la paleta,
+la escala tipográfica, los márgenes y el carácter, escribe un estilo nuevo en
+`~/.claude/pdf-restyle/styles/` y sáltate la pantalla 1.
+
+### Pantalla 1 · Dirección visual
+
+Usa AskUserQuestion con **previews ASCII**: mostrar dos maquetas en texto
+comunica más que cualquier adjetivo.
+
+1. **Carga visual** — Minimalista · Equilibrado · Maximalista
+2. **Carácter gráfico** — Tech/sistemático · Manual/artesanal · Editorial
+   clásico · Experimental
+3. **Paleta** — Papel y tinta · Blanco y negro · Acento fuerte · Oscuro
+4. **Tipografía** — Que la elijas tú · Serif · Sans · Mixta display+texto
+
+### Pantalla 2 · Voz y formato
+
+5. **Tono** — las voces de `~/.claude/pdf-restyle/voices/`
+6. **Tratamiento** — Tú · Usted · Impersonal
+7. **Intervención** — Solo traducir · Reescribir superficie · Reestructurar
+8. **Formato** — A4 · Carta · Cuadrado · Digital 16:9
+
+### Pantalla 3 · Aparato editorial
+
+9. **Elementos** *(multi)* — Portada · Tabla de contenido · Folios · Cornisas ·
    Aperturas de sección · Créditos
-6. **Intervención** — Solo traducir · Reescribir superficie · Reestructurar
 
-Si el usuario eligió "tengo una referencia", pídele el archivo o la URL, extrae
-los tokens y escribe un estilo nuevo en `~/.claude/pdf-restyle/styles/`.
+### Componer el estilo
 
-Guarda las respuestas en `receta.md` junto al PDF. Si la invocación trae
-`--receta <archivo>`, **sáltate la entrevista completa** y usa eso.
+Con las respuestas, busca en `styles/` el que mejor encaje. **Si ninguno cae
+cerca en los cuatro ejes, escribe uno nuevo** en vez de forzar el más parecido.
+Ver `references/ejes-visuales.md` para cómo cada eje se traduce en tokens.
 
----
+Guarda todo en `receta.md` junto al PDF. Si la invocación trae
+`--receta <archivo>`, **sáltate la entrevista completa**.
 
 ## Paso 4 · Voz
 
