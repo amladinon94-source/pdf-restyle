@@ -264,8 +264,18 @@ original.
 
 ## Límites que hay que decir de frente
 
-- **PDF escaneado** sin capa de texto: necesita OCR (`tesseract`), no incluido.
-  Detectable porque `texto.txt` sale vacío o con basura.
+- **PDF sin capa de texto.** Detectable porque `texto.txt` sale casi vacío y hay
+  una imagen por página. Antes de pensar en OCR, **lee tú las páginas**: renderiza
+  con `pdftoppm -r 78` y ábrelas con Read. Para un documento de hasta ~40 páginas
+  es más rápido y más fiable que instalar `tesseract`, porque además entiendes la
+  maqueta mientras transcribes.
+
+  El problema real de estos PDF no es leerlos, es que **la foto y el texto vienen
+  fundidos en la misma imagen**. No se pueden separar. La salida es recortar la
+  zona de la foto **por CSS** —un contenedor con `overflow: hidden` y la imagen al
+  100% de ancho— en lugar de reprocesar el archivo: así la imagen llega intacta al
+  PDF y no se rompe la regla de no retocar. El PDF acaba conteniendo la imagen
+  completa aunque solo se vea la banda; dilo en la entrega.
 - **Texto dentro de imágenes** (infografías): no se traduce sin retocar la
   imagen, y no retocamos imágenes. La traducción va como caption al lado.
 - **Tablas complejas**: salen, pero avisa que conviene revisarlas.
