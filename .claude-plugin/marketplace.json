@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "pdf-restyle",
+  "description": "Re-maquetacion editorial de PDFs con estilo visual y voz propios",
+  "owner": { "name": "Andres Ladino" },
+  "plugins": [
+    {
+      "name": "pdf-restyle",
+      "source": "./",
+      "description": "Toma un PDF, lo entiende, lo traduce y lo re-maqueta con tu estilo visual y tu voz."
+    }
+  ]
+}

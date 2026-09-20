@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>{{TITULO}}</title>
+<!-- {{FONTS}} -> <link rel="stylesheet" href="https://fonts.googleapis.com/..."> del estilo -->
+{{FONTS}}
+<style>
+/* 1. invariante */
+{{BASE_CSS}}
+/* 2. tokens del estilo elegido */
+{{ESTILO_CSS}}
+/* 3. design.md local del proyecto, si existe */
+{{OVERRIDES_CSS}}
+
+h1 { font-family: var(--font-display); font-size: var(--size-h1); line-height: 1.05;
+     letter-spacing: -0.02em; margin: 0 0 6mm; }
+h2 { font-family: var(--font-display); font-size: var(--size-h2); line-height: 1.15;
+     margin: 0 0 4mm; }
+h3 { font-family: var(--font-display); font-size: var(--size-h3); margin: 0 0 2.5mm; }
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<section class="pg pg--portada pg--sangre">
+  <img class="sangre" src="{{IMG_PORTADA}}" alt="">
+</section>
+
+<!-- CONTENIDO — los numeros se llenan en la SEGUNDA pasada -->
+<section class="pg">
+  <h2>Contenido</h2>
+  <ul class="toc">
+    <li><span>{{SECCION}}</span><span class="puntos"></span><span class="np">{{PAG}}</span></li>
+  </ul>
+  <div class="folio">2</div>
+</section>
+
+<!-- PAGINA TIPO -->
+<section class="pg">
+  <span class="cornisa">{{SECCION}}</span>
+  <h2>{{TITULO_SECCION}}</h2>
+  <figure class="fig">
+    <img src="{{IMG}}" alt="">
+    <figcaption>{{CAPTION}}</figcaption>
+  </figure>
+  <div class="folio">{{N}}</div>
+</section>
+
+<script src="medicion.js"></script>
+</body>
+</html>

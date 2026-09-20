@@ -1,0 +1,100 @@
+/* ===========================================================
+   _base.css — INVARIANTE. No lo edites por estilo.
+   Aqui vive la ingenieria de impresion que es igual en todos:
+   paginacion explicita, folios, cornisas, reglas de imagen.
+
+   Por que paginacion explicita y no CSS paged media:
+   Chrome IGNORA las margin boxes de @page (@bottom-center, etc).
+   Verificado. Por eso cada pagina es un .pg de alto fijo y los
+   folios van dentro. A cambio tenemos control total del aparato
+   editorial y sabemos el numero de pagina de cada seccion.
+   =========================================================== */
+
+@page { size: var(--page, A4); margin: 0; }
+
+:root {
+  --page: A4;
+  --page-w: 210mm;  --page-h: 297mm;
+  --margin-v: 22mm; --margin-h: 18mm;
+  --cols: 12; --gutter: 6mm;
+  --bg: #fff; --ink: #111; --accent: #333; --muted: #888;
+  --font-display: Georgia, serif;
+  --font-text: system-ui, sans-serif;
+  --size-body: 10.5pt; --leading: 1.5;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--size-body); line-height: var(--leading);
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+
+/* --- La pagina --- */
+.pg {
+  width: var(--page-w); height: var(--page-h);
+  padding: var(--margin-v) var(--margin-h);
+  position: relative; overflow: hidden;
+  background: var(--bg);
+  page-break-after: always; break-after: page;
+}
+.pg:last-child { page-break-after: auto; break-after: auto; }
+.pg--sangre { padding: 0; }          /* imagen a borde completo */
+
+/* --- Aparato editorial --- */
+.folio {
+  position: absolute; bottom: calc(var(--margin-v) / 2); left: 0; right: 0;
+  text-align: center; font-size: 8.5pt; color: var(--muted);
+  font-family: var(--font-text); letter-spacing: .04em;
+}
+.cornisa {
+  position: absolute; top: calc(var(--margin-v) / 2);
+  left: var(--margin-h); right: var(--margin-h);
+  font-size: 7.5pt; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted);
+}
+.pg--portada .folio, .pg--portada .cornisa,
+.pg--sangre  .folio, .pg--sangre  .cornisa { display: none; }
+
+/* --- Tabla de contenido --- */
+.toc { list-style: none; padding: 0; margin: 0; }
+.toc li { display: flex; align-items: baseline; gap: 4mm; margin: 3.5mm 0; }
+.toc .puntos { flex: 1 1 auto; border-bottom: 1px dotted color-mix(in srgb, var(--muted) 60%, transparent); }
+.toc .np { font-variant-numeric: tabular-nums; color: var(--muted); }
+.toc .n2 { padding-left: 6mm; font-size: .92em; }
+
+/* --- Rejilla --- */
+.grid { display: grid; grid-template-columns: repeat(var(--cols), 1fr); gap: var(--gutter); }
+
+/* --- Imagenes ---
+   object-fit recorta por encuadre; NUNCA reescala pixeles.
+   El PDF final embebe la imagen original completa, sin recomprimir. */
+img { max-width: 100%; display: block; }
+.fig { margin: 0; }
+.fig img { width: 100%; object-fit: cover; aspect-ratio: var(--img-ratio, 4/3); }
+.fig figcaption {
+  font-size: 8pt; line-height: 1.4; color: var(--muted);
+  margin-top: 2mm; font-style: italic;
+}
+.sangre { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Antiviudas / antihuerfanas --- */
+h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+h1, h2, h3, h4, figure, table, li, blockquote { break-inside: avoid; page-break-inside: avoid; }
+p { orphans: 3; widows: 3; margin: 0 0 var(--parrafo-gap, 3mm); }
+p:last-child { margin-bottom: 0; }
+
+/* --- Pasos y avisos, comunes a manuales --- */
+.pasos { counter-reset: paso; list-style: none; padding: 0; margin: 0; }
+.pasos > li { counter-increment: paso; position: relative; padding-left: 10mm; margin: 0 0 5mm; }
+.pasos > li::before {
+  content: counter(paso); position: absolute; left: 0; top: 0;
+  font-family: var(--font-display); font-size: 1.5em; line-height: 1;
+  color: var(--accent);
+}
+.aviso {
+  border-left: 2px solid var(--accent); padding: 2mm 0 2mm 4mm;
+  margin: 4mm 0; font-size: .95em;
+}
