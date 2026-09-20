@@ -185,8 +185,32 @@ Incluye `templates/medicion.js` al final del body y mide:
 bash "$CLAUDE_PLUGIN_ROOT/scripts/medir.sh" work/maqueta.html
 ```
 
-Devuelve, por página, cuánto se desborda y qué imágenes quedaron bajo 150 ppi.
-Itera moviendo contenido hasta que no haya desbordes.
+Devuelve, por página, cuánto se desborda, qué porcentaje de la caja va lleno y
+qué imágenes quedaron bajo 150 ppi.
+
+**No pagines a ojo: pagina con un bucle de corrección.** Cualquier estimador de
+altura que escribas será aproximado, porque el alto real depende de la fuente,
+del ancho de caja y de dónde caen los saltos de línea. El patrón que funciona:
+
+```
+1. Estima el alto de cada pieza y repártelas en páginas con un cupo.
+2. Renderiza y mide.
+3. Para cada página desbordada, fuerza un corte antes de su última pieza.
+4. Vuelve al paso 1. Repite hasta que no haya desbordes (5–8 vueltas bastan).
+```
+
+Guarda qué piezas cayeron en cada página para poder corregir en la vuelta
+siguiente. La medición real manda siempre sobre el estimador.
+
+**Vigila también el llenado, no solo el desborde.** Un libro con 39% de llenado
+medio no es minimalista: está mal paginado y ocupa el doble de páginas de lo que
+debería. Calibra el cupo hasta llegar al 65–80%, y solo entonces corrige
+desbordes.
+
+**Trampa del medidor:** si envuelves el contenido en un contenedor con
+`height: 100%`, medir los hijos directos de `.pg` da siempre 100% y ningún
+desborde. Es un falso negativo perfecto. Por eso `medicion.js` mide dentro de
+`.caja` cuando existe.
 
 **El techo de escala es el tamaño que la imagen tenía en el original**, nunca
 más. Dentro de ese techo, apunta a 300 ppi y avisa por debajo de 150.
