@@ -92,8 +92,13 @@ Produce `work/content.json`:
 }
 ```
 
-`ancho_max_300ppi` = `px_ancho ÷ 300 × 25.4` mm. Es el dato que manda en la
-maqueta: **hasta qué ancho se puede usar esa foto sin degradarla**.
+`ancho_max_300ppi` = `px_ancho ÷ 300 × 25.4` mm, y `ancho_en_el_original` =
+`px_ancho ÷ ppi_original × 25.4` mm. El segundo es el techo duro: nunca se
+agranda una imagen por encima del tamaño que tenía en la fuente.
+
+**Una página puede tener más de una imagen.** Colócalas todas: si tomas solo la
+primera, pierdes ilustraciones en silencio. Y las páginas especiales —aperturas
+de sección, dedicatorias— también suelen traer la suya.
 
 En `hechos` marca todo lo inmutable: cantidades, medidas, tiempos,
 temperaturas, materiales, herramientas, advertencias, marcas.
@@ -159,8 +164,14 @@ bash "$CLAUDE_PLUGIN_ROOT/scripts/medir.sh" work/maqueta.html
 Devuelve, por página, cuánto se desborda y qué imágenes quedaron bajo 150 ppi.
 Itera moviendo contenido hasta que no haya desbordes.
 
-**Si una imagen queda bajo 150 ppi, no la agrandes: achica el hueco.** La foto
-manda sobre la maqueta.
+**El techo de escala es el tamaño que la imagen tenía en el original**, nunca
+más. Dentro de ese techo, apunta a 300 ppi y avisa por debajo de 150.
+
+Pero si el documento entero ya viene por debajo de 150 ppi —libros escaneados,
+material antiguo— **no encojas las imágenes para alcanzar ese piso**: las
+dejarías más chicas que en el original y empeorarías el documento. En ese caso
+el piso es informativo y el techo sigue siendo la paridad con la fuente. La
+imagen manda sobre la maqueta, en los dos sentidos.
 
 ---
 

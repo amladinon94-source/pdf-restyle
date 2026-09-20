@@ -37,9 +37,21 @@ Procedencia del PDF original, fecha, nota de traducción y re-maquetación.
 
 ## Reglas de imagen
 
-1. Nunca escalar por encima de `ancho_max_300ppi`. Bajo 150 ppi, se achica el
-   hueco — no se agranda la foto.
-2. `object-fit: cover` recorta por encuadre, no reescala píxeles.
-3. Una imagen a sangre no lleva folio ni cornisa encima.
-4. Las verticales (`4/5`, `1/1`) piden columnas angostas; las apaisadas
+1. El techo es el tamaño que la imagen tenía en el original; dentro de eso, se
+   apunta a 300 ppi. Si el documento entero ya viene bajo 150 ppi (escaneos,
+   material antiguo), no se encoge para alcanzar el piso: eso lo dejaría peor
+   que la fuente.
+2. Una página puede traer varias imágenes. Colócalas todas.
+3. `object-fit: cover` recorta por encuadre, no reescala píxeles.
+4. Una imagen a sangre no lleva folio ni cornisa encima.
+5. Las verticales (`4/5`, `1/1`) piden columnas angostas; las apaisadas
    (`16/9`, `3/2`) piden ancho completo.
+
+
+## Line art escaneado sobre papel de color
+
+Los escaneos de dibujo a línea traen fondo blanco. Sobre un papel crema o
+kraft, ese blanco se ve como una caja pegada encima. `.lineart`
+(`mix-blend-mode: multiply`) lo disuelve y deja el trazo flotando sobre el
+papel. Sobrevive al `print-to-pdf`. Solo para dibujo a línea: en fotografía
+apaga las luces altas.

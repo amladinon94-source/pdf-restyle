@@ -1,7 +1,7 @@
 {
   "name": "pdf-restyle",
   "displayName": "PDF Restyle",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Toma un PDF, lo entiende, lo traduce al espanol y lo vuelve a maquetar con tu propio estilo visual y tu voz. Conserva las imagenes originales sin perdida y agrega aparato editorial: portada, tabla de contenido, folios y cornisas.",
   "author": { "name": "Andres Ladino" },
   "homepage": "https://github.com/amladinon94-source/pdf-restyle",
