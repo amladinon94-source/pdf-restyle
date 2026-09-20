@@ -86,8 +86,22 @@ pantalla, así que el tamaño aparente del texto es `cuerpo ÷ ancho de página`
 En la primera corrida se copian a `~/.claude/pdf-restyle/`. Viven fuera del
 plugin a propósito: las actualizaciones no te los borran.
 
-**Estilos** — `editorial-calido` · `nordico-minimal` · `artesanal-vintage` ·
-`manual-claro`
+**Estilos editoriales** — ocho direcciones con carácter propio:
+
+| | Qué hace |
+|---|---|
+| `dato-gigante` | Campo de color plano y una cifra descomunal con trama de medio tono |
+| `rojo-condensado` | Rojo a sangre, titular condensado apilado, numeral fantasma gigante |
+| `panel-modular` | Bento de módulos redondeados, monoespaciada en los metadatos |
+| `hueso-naranja` | Fondo crema, un solo naranja, fotografía en bloques netos |
+| `manifiesto-serif` | Serif grande sobre greige, con barra de resaltador en lo que importa |
+| `acido` | Negro y amarillo, titular cortado a media palabra, nativo de vertical |
+| `mosaico` | Blanco y negro, palabra gigante y retícula apretada de fotos |
+| `deck-rojo` | Hueso y un rojo, logotipo ancla repetido, apaisado |
+
+**Estilos de manual** — `editorial-calido` · `nordico-minimal` ·
+`artesanal-vintage` · `manual-claro` · `moderno-limpio` · `manual-experimental` ·
+`minimal-experimental`
 **Voces** — `amigable-cercano` · `claro-neutro` · `editorial` · `institucional`
 
 Un estilo es un markdown legible con un bloque CSS que se inyecta tal cual:
