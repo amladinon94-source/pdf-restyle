@@ -63,6 +63,24 @@ El plugin corre un `doctor` antes de empezar y te dice exactamente qué falta.
 
 ---
 
+## Se lee en el celular
+
+Casi todos estos PDF se terminan leyendo en un teléfono, así que el plugin
+pregunta el **destino** antes que nada y de ahí deriva el formato.
+
+El dato que lo decide: en el celular el visor ajusta el ancho de página al de
+pantalla, así que el tamaño aparente del texto es `cuerpo ÷ ancho de página`.
+
+| Formato | Cuerpo | Se ve como | |
+|---|---|---|---|
+| A4 | 10pt | 4,3pt | ilegible |
+| A4 | 16pt | 6,9pt | ilegible |
+| Vertical 120mm | 13pt | 9,8pt | cómodo |
+
+**Subir el tamaño de letra en A4 no arregla nada.** Haría falta un cuerpo de
+23pt. El formato de página es la palanca. Por eso cada estilo tiene su variante
+`-celular` en vertical 9:16.
+
 ## Estilos y voces
 
 En la primera corrida se copian a `~/.claude/pdf-restyle/`. Viven fuera del

@@ -128,6 +128,10 @@ la escala tipográfica, los márgenes y el carácter, escribe un estilo nuevo en
 Usa AskUserQuestion con **previews ASCII**: mostrar dos maquetas en texto
 comunica más que cualquier adjetivo.
 
+0. **Destino** — Celular · Impresión · Ambos. **Va primero porque determina el
+   formato**, y el formato determina si el documento se puede leer. Por defecto
+   es celular: es donde se termina leyendo casi todo. Ver
+   `references/lectura-en-celular.md`.
 1. **Carga visual** — Minimalista · Equilibrado · Maximalista
 2. **Carácter gráfico** — Tech/sistemático · Manual/artesanal · Editorial
    clásico · Experimental
@@ -139,7 +143,8 @@ comunica más que cualquier adjetivo.
 5. **Tono** — las voces de `~/.claude/pdf-restyle/voices/`
 6. **Tratamiento** — Tú · Usted · Impersonal
 7. **Intervención** — Solo traducir · Reescribir superficie · Reestructurar
-8. **Formato** — A4 · Carta · Cuadrado · Digital 16:9
+8. **Formato** — se propone derivado del destino, no se pregunta en frío:
+   celular → 120 × 213mm · impresión → A4 o A5 · ambos → A5
 
 ### Pantalla 3 · Aparato editorial
 
@@ -252,6 +257,16 @@ QA visual obligatorio:
 ```bash
 pdftoppm -png -r 50 salida.pdf work/qa/q
 ```
+
+**Si el destino es celular, además, el chequeo que de verdad importa:**
+
+```bash
+pdftoppm -png -scale-to-x 680 -scale-to-y -1 salida.pdf work/qa/celular
+```
+
+680px es el ancho real de un teléfono. Abre esas páginas y **léelas sin
+ampliar**. Si tienes que acercarte, el documento no sirve: vuelve a
+`references/lectura-en-celular.md` y corrige el formato, no el cuerpo.
 
 Lee esas páginas con Read. Busca: viudas y huérfanas, títulos solos al pie,
 imágenes cortadas, páginas casi vacías, folios donde no van, tabla de contenido

@@ -52,3 +52,25 @@ va un salto de sección o si la portada lleva imagen a sangre.
 
 Gana el último. Los ajustes del chat no tocan archivos; al terminar se pregunta
 si se consolidan en el estilo.
+
+
+## Formato y destino
+
+El ancho de página no es una preferencia estética: decide si el documento se
+puede leer. En un celular el visor ajusta el ancho de página al de pantalla, así
+que el tamaño aparente del texto es `cuerpo_pt × (68 ÷ ancho_mm) × 1,33`.
+
+Un estilo pensado para celular lleva estos tokens:
+
+```css
+:root {
+  --page: 120mm 213mm; --page-w: 120mm; --page-h: 213mm;   /* 9:16 */
+  --margin-v: 14mm; --margin-h: 12mm;
+  --size-body: 13pt; --leading: 1.6;
+}
+```
+
+Y uno para impresión, los de siempre (A4, cuerpo 10-11pt, márgenes 20-24mm).
+
+**Un mismo estilo puede tener las dos variantes** con `extends:`. Ver
+`lectura-en-celular.md` para la tabla completa y el chequeo de verificación.
