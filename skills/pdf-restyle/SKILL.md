@@ -207,10 +207,45 @@ del ancho de caja y de dónde caen los saltos de línea. El patrón que funciona
 Guarda qué piezas cayeron en cada página para poder corregir en la vuelta
 siguiente. La medición real manda siempre sobre el estimador.
 
-**Vigila también el llenado, no solo el desborde.** Un libro con 39% de llenado
-medio no es minimalista: está mal paginado y ocupa el doble de páginas de lo que
-debería. Calibra el cupo hasta llegar al 65–80%, y solo entonces corrige
-desbordes.
+### Una página por debajo del 70% de llenado es un fallo, igual que un desborde
+
+**El QA rechaza por las dos cosas.** Medir solo el desborde deja pasar páginas
+con dos líneas de texto y doce centímetros de vacío. Si tu informe dice «cero
+desbordes» y el llenado medio es 55%, el documento está mal: no lo entregues.
+
+```
+desbordes > 0        -> fallo
+llenado < 0.70       -> fallo (pagina huerfana)
+```
+
+Se exceptúan portada, aperturas de capítulo, tabla de contenido y cierre: son
+páginas que deben respirar. Todas las demás entran en el criterio.
+
+### Cómo se arregla: que la imagen absorba el hueco
+
+**Toda página de contenido lleva imagen, y la imagen crece hasta llenar la
+página.** Las dos reglas son la misma: una página huérfana es una página a la
+que le falta imagen.
+
+```
+1. Pagina el contenido con tu estimador.
+2. Mide. Para cada pagina bajo el 70%, calcula el hueco:
+       hueco_mm = (0,86 - llenado) x alto_util_mm
+3. Suma ese hueco a la altura de su banda de imagen.
+4. Vuelve a medir. Converge en 3 o 4 vueltas.
+```
+
+**La banda necesita `object-fit: cover` o no sirve de nada:**
+
+```css
+.banda      { width: 100%; overflow: hidden; }
+.banda img  { width: 100%; height: 100%; object-fit: cover; }
+```
+
+Sin `height` y `cover`, el contenedor crece pero la imagen conserva su
+proporción y deja el hueco blanco **dentro de la propia banda**. El resultado se
+ve casi igual de mal que la página huérfana original, y la medición dice que
+todo está bien. Verificado: solo se detecta renderizando la página y mirándola.
 
 **Trampa del medidor:** si envuelves el contenido en un contenedor con
 `height: 100%`, medir los hijos directos de `.pg` da siempre 100% y ningún
@@ -271,6 +306,10 @@ ampliar**. Si tienes que acercarte, el documento no sirve: vuelve a
 Lee esas páginas con Read. Busca: viudas y huérfanas, títulos solos al pie,
 imágenes cortadas, páginas casi vacías, folios donde no van, tabla de contenido
 con números equivocados. Corrige y vuelve a renderizar.
+
+**Mira las páginas, no solo los números.** Los dos peores fallos de este QA
+—páginas huérfanas y bandas con hueco blanco dentro— pasaron la medición
+numérica sin problema. Solo se ven abriendo la imagen.
 
 Entrega el PDF, el `receta.md` y un resumen de qué se cambió respecto al
 original.

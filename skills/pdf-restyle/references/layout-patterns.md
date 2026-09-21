@@ -55,3 +55,20 @@ kraft, ese blanco se ve como una caja pegada encima. `.lineart`
 (`mix-blend-mode: multiply`) lo disuelve y deja el trazo flotando sobre el
 papel. Sobrevive al `print-to-pdf`. Solo para dibujo a línea: en fotografía
 apaga las luces altas.
+
+
+## Bandas de imagen que crecen
+
+Una banda es una franja de fotografía que cruza la página de lado a lado. Su
+altura **no es fija**: la fija el QA, sumándole el hueco que le sobra a la página.
+
+```css
+.banda      { width: 100%; overflow: hidden; }
+.banda img  { width: 100%; height: 100%; object-fit: cover; }
+```
+
+`height: 100%` y `object-fit: cover` son obligatorios. Sin ellos el contenedor
+crece y la imagen no, dejando un hueco blanco dentro de la banda.
+
+Rango útil: de 40mm a unos 150mm en página vertical de 213mm. Por encima, la
+imagen se come el texto; por debajo, no llena nada.
