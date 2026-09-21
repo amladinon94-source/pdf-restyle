@@ -176,6 +176,19 @@ con sus parámetros.
 ni `.sobre` ni `.cifra`, el estilo no tiene dónde actuar y todos se ven iguales.
 Lee el apartado «Gestos activos» del estilo elegido y emite lo que pide.
 
+### Imágenes que no vienen del original
+
+Cuando el documento necesita fotografía que el PDF de origen no tiene —o cuando
+el usuario prefiere reemplazarla—, **Canva es la fuente**. El conector exporta
+diseños y assets de su cuenta, y sirve además para muestrear una paleta.
+
+Ver `references/canva.md` para el flujo verificado, los tres límites (no se
+pueden subir archivos locales, el brand kit no expone colores, el tamaño de
+página no se respeta) y por qué **no** hay que unir PDF con `pdfunite`.
+
+Pregunta antes de reemplazar imágenes. En un libro donde las ilustraciones **son**
+el contenido, sustituirlas lo destruye.
+
 ### Componer el estilo
 
 Con las respuestas, busca en `styles/` el que mejor encaje. **Si ninguno cae

@@ -169,6 +169,15 @@ conocen después de paginar.
 
 ---
 
+## Canva
+
+Si tienes el conector de Canva conectado, el plugin puede sacar de ahí la
+fotografía que el PDF original no tiene, y muestrearle la paleta a un diseño tuyo
+para generar un estilo nuevo.
+
+Lo que **no** sirve para esto, aunque lo parezca: el Canva CLI y el Canva Dev
+MCP. Los dos son para construir apps de Canva, no para sacar contenido.
+
 ## Limitaciones
 
 - **PDF escaneado** sin capa de texto: necesita OCR, no incluido
