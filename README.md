@@ -99,6 +99,10 @@ plugin a propósito: las actualizaciones no te los borran.
 | `mosaico` | Blanco y negro, palabra gigante y retícula apretada de fotos |
 | `deck-rojo` | Hueso y un rojo, logotipo ancla repetido, apaisado |
 
+Doce de los quince tienen variante `-celular` en vertical 9:16, con el cuerpo a
+13pt y los ajustes propios de cada uno. `acido` no la necesita —ya nació
+vertical— y `deck-rojo` es apaisado por definición.
+
 **Estilos de manual** — `editorial-calido` · `nordico-minimal` ·
 `artesanal-vintage` · `manual-claro` · `moderno-limpio` · `manual-experimental` ·
 `minimal-experimental`
