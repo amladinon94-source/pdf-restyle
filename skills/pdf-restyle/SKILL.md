@@ -151,6 +151,31 @@ comunica más que cualquier adjetivo.
 9. **Elementos** *(multi)* — Portada · Tabla de contenido · Folios · Cornisas ·
    Aperturas de sección · Créditos
 
+### Los gestos: lo que separa un estilo de un tema
+
+Un estilo que solo cambia colores y tipografía **no es un estilo, es un tema**.
+Lo que distingue a uno de verdad son los gestos gráficos, y el plugin los tiene
+como vocabulario compartido en `styles/_gestos.css`:
+
+| Gesto | Clase | Qué hace |
+|---|---|---|
+| Tipografía fantasma | `.fantasma` | Palabra enorme al fondo, recortada por el borde, al 5–18% |
+| Texto sobrepuesto | `.sobre` + `.sobre--velo` | Titular montado sobre la foto, con veladura para el contraste |
+| Cifra descomunal | `.cifra` · `.cifra--trama` | El dato como imagen, con medio tono vía `background-clip: text` |
+| Escala extrema | `.esc-xl` / `.esc-xs` | Los pares de contraste, mínimo 1:8 |
+| Roturas de retícula | `.grid--asim` · `.grid--desfase` · `.sangre-izq` · `.col-fuera` | Salirse de la caja como gesto, no como accidente |
+| Textura sin imágenes | `.trama-diag` · `.trama-puntos` · `.velo-color` | Todo con gradientes, cero archivos |
+| Iconografía | `.ico` · `.ico-caja` | SVG en línea desde `assets/iconos.py`, 18 iconos en `currentColor` |
+| Marca lateral | `.marca-lateral` | Cornisa rotada en el corte |
+
+**Carga los tres en este orden:** `_base.css`, `_gestos.css`, el bloque `css` del
+estilo, y por último su bloque ```gestos```, que es donde el estilo los enciende
+con sus parámetros.
+
+**La maqueta tiene que emitir los ganchos.** Si construyes páginas sin `.fantasma`
+ni `.sobre` ni `.cifra`, el estilo no tiene dónde actuar y todos se ven iguales.
+Lee el apartado «Gestos activos» del estilo elegido y emite lo que pide.
+
 ### Componer el estilo
 
 Con las respuestas, busca en `styles/` el que mejor encaje. **Si ninguno cae

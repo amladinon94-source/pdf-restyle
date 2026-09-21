@@ -42,6 +42,26 @@ https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&display=sw
   texto, cortada por el borde.
 - Un solo filete fino separa el bloque de texto del dato. Nada más.
 
+## Gestos activos
+
+`cifra--trama` a 150pt con medio tono · `fantasma` de palabra clave ·
+micro-columnas · escala 1:20 · sin iconografía (el dato es la imagen).
+
+```gestos
+:root { --cifra-size: 150pt; --cifra-color: var(--ink);
+        --fantasma-size: 150pt; --fantasma-color: var(--ink); --fantasma-op: .09;
+        --esc-xl: 150pt; --esc-xs: 7.5pt; --esc-micro: 6pt; --ico: 4.5mm; }
+.pg { position: relative; }
+.micro-cols { column-count: 4; column-gap: 4mm; font-size: 7.5pt; line-height: 1.32; }
+.micro-cols h3 { font-size: 8pt; break-after: avoid; }
+.dato-pie { position: absolute; bottom: var(--margin-v); left: var(--margin-h);
+            right: var(--margin-h); border-top: .5pt solid var(--ink); padding-top: 3mm; }
+.dato-pie .cifra { margin-top: 2mm; }
+.leyenda { display: flex; gap: 8mm; font-size: 6.5pt; letter-spacing: .1em;
+           text-transform: uppercase; margin-top: 2mm; }
+.ico { display: none; }
+```
+
 ## Límites
 En celular el dato se lee perfecto, pero **las columnas de 7,5pt no.** Si el
 destino es teléfono, usa este estilo solo para aperturas y pasa el cuerpo a

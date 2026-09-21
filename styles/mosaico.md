@@ -44,6 +44,37 @@ https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&fam
   gris.
 - El texto de entrada va arriba, en una columna ancha, y respira.
 
+## Gestos activos
+
+Palabra `esc-xl` a 130pt pegada al pie · mosaico con gutter de 2,5mm ·
+numeral en cuadro negro · etiqueta en versalitas serif rojas · sin fantasma
+(aquí el blanco es el gesto).
+
+```gestos
+:root { --esc-xl: 130pt; --esc-l: 22pt; --esc-xs: 7.5pt; --ico: 4mm; }
+.palabra { font-family: var(--font-display); font-size: 130pt; line-height: .76;
+           letter-spacing: -.045em; color: var(--ink); text-transform: uppercase;
+           margin: 0; display: block; }
+.mosaico { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5mm; }
+.mosaico img { width: 100%; height: 100%; object-fit: cover; display: block;
+               filter: grayscale(1); }
+.mosaico .alto { grid-row: span 2; }
+.mosaico .ancho { grid-column: span 2; }
+.sec-mark { display: flex; align-items: center; gap: 4mm; margin: 6mm 0 3mm;
+            border-top: .5pt solid var(--ink); border-bottom: .5pt solid var(--ink);
+            padding: 2.5mm 0; }
+.sec-num { width: 8mm; height: 8mm; background: var(--ink); color: #fff;
+           font-family: var(--font-display); font-size: 11pt; display: flex;
+           align-items: center; justify-content: center; }
+.sec-tit { font-family: var(--font-etiqueta); font-variant: small-caps;
+           font-size: 8.5pt; letter-spacing: .14em; color: var(--accent); flex: 1;
+           text-align: center; }
+.folio-ext { position: absolute; bottom: 10mm; left: var(--margin-h);
+             right: var(--margin-h); display: flex; justify-content: space-between;
+             font-size: 7.5pt; color: var(--muted); letter-spacing: .1em;
+             text-transform: uppercase; }
+```
+
 ## Límites
 La palabra gigante funciona en celular; el mosaico de fotos no —las imágenes
 quedan de 2cm—. En vertical, pasa el mosaico a dos columnas como máximo.

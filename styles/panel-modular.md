@@ -48,6 +48,31 @@ https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBr
 - **Sin fotografía.** Si hace falta imagen, va un degradado radial metálico en un
   módulo pequeño.
 
+## Gestos activos
+
+Bento asimétrico · `trama-diag` como barra de progreso · iconografía en cada
+módulo · monoespaciada en metadatos · sin fantasma (aquí la retícula manda).
+
+```gestos
+:root { --cifra-size: 46pt; --cifra-color: var(--ink);
+        --esc-xl: 34pt; --esc-xs: 8pt; --ico: 5mm; --ico-caja: 10mm;
+        --ico-borde: .6pt solid var(--muted); }
+.bento { display: grid; grid-template-columns: 2fr 1fr; grid-auto-rows: min-content;
+         gap: 3mm; border: 1.4pt solid var(--marco); border-radius: var(--radio);
+         padding: 3mm; }
+.mod { background: var(--panel); border-radius: calc(var(--radio) - 1.2mm); padding: 5mm; }
+.mod--acc { background: var(--accent); color: #fff; position: relative; overflow: hidden; }
+.mod--acc .cifra { color: #fff; }
+.mod--ancho { grid-column: 1 / -1; }
+.mod--prog { position: relative; }
+.mod--prog .trama-diag { position: absolute; top: 0; left: 0; right: 0;
+                         height: var(--prog, 34%); color: rgba(0,0,0,.55); }
+.meta-mono { font-family: var(--font-mono); font-size: 8pt; letter-spacing: .02em;
+             color: var(--muted); display: flex; justify-content: space-between;
+             align-items: center; }
+.ico-caja { background: #fff; }
+```
+
 ## Límites
 Funciona muy bien en celular porque los módulos se apilan. Pero **no sirve para
 texto largo**: si una sección pasa de 600 caracteres, este no es el estilo.

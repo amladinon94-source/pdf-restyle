@@ -41,6 +41,25 @@ https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&famil
 - Micro-etiquetas arriba: sección, proyecto, año, separadas por espacios largos.
 - **Sin filetes, sin cajas, sin fotografía.** Solo color, tipografía y escala.
 
+## Gestos activos
+
+`fantasma` numeral a 250pt al 18% saliéndose por abajo · titular apilado con
+interlínea 0,92 · tres columnas de 8pt · iconografía mínima en las cornisas.
+
+```gestos
+:root { --fantasma-size: 250pt; --fantasma-color: #fff; --fantasma-op: .18;
+        --esc-xl: 54pt; --esc-xs: 8pt; --ico: 4mm; }
+.pg { position: relative; }
+h1, h2.cap-t { font-family: var(--font-display); text-transform: uppercase;
+               line-height: .92; letter-spacing: -.02em; }
+.tres-cols { column-count: 3; column-gap: 5mm; font-size: 8pt; text-align: justify;
+             hyphens: auto; }
+.marca-sup { display: flex; gap: 10mm; font-size: 6.5pt; letter-spacing: .18em;
+             text-transform: uppercase; margin-bottom: 8mm; align-items: center; }
+.ico { stroke-width: 2; }
+.fantasma--br { bottom: -22mm; right: -10mm; }
+```
+
 ## Límites
 El cuerpo a 8pt sobre rojo es exigente. Para lectura larga, baja la densidad a 2
 columnas y sube a 10pt, o usa la variante celular.

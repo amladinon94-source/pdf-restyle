@@ -1,0 +1,133 @@
+/* ===========================================================
+   _gestos.css — VOCABULARIO ESTRUCTURAL. Se carga después de
+   _base.css y antes del estilo.
+
+   Aquí viven los gestos que un estilo puede activar: tipografía
+   fantasma, texto sobrepuesto, cifras descomunales, roturas de
+   retícula, escalas extremas e iconografía.
+
+   Estos son los DEFECTOS NEUTROS. Cada estilo los redefine; si no
+   los redefine, quedan discretos y no estorban.
+   =========================================================== */
+
+/* ---------- 1. Tipografía fantasma ----------
+   Una palabra enorme al fondo, recortada por el borde de página.
+   Es el gesto que más "profundidad" da y el que más se repite en
+   editorial moderno. Va SIEMPRE detrás, nunca compite por lectura. */
+.fantasma {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fantasma-size, 180pt);
+  line-height: .78;
+  letter-spacing: -.05em;
+  color: var(--fantasma-color, currentColor);
+  opacity: var(--fantasma-op, .07);
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+}
+.fantasma--tl { top: -2mm;  left: -6mm; }
+.fantasma--tr { top: -2mm;  right: -6mm; }
+.fantasma--bl { bottom: -8mm; left: -6mm; }
+.fantasma--br { bottom: -8mm; right: -6mm; }
+.fantasma--centro { top: 34%; left: -8mm; }
+/* el contenido siempre por encima del fantasma */
+.pg > .cuerpo, .pg > .caja, .pg > .banda { position: relative; z-index: 1; }
+
+/* ---------- 2. Texto sobrepuesto a la imagen ----------
+   El titular monta sobre la fotografía. Sin caja, sin sombra:
+   el contraste lo pone el color o una veladura. */
+.sobre { position: relative; }
+.sobre > img { display: block; width: 100%; }
+.sobre-txt {
+  position: absolute;
+  left: var(--margin-h); right: var(--margin-h);
+  bottom: var(--sobre-bottom, 8mm);
+  color: var(--sobre-color, #fff);
+  z-index: 2;
+}
+.sobre-txt h1, .sobre-txt h2 { color: inherit; margin: 0; }
+/* veladura opcional para garantizar contraste */
+.sobre--velo::after {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: var(--velo, linear-gradient(to top, rgba(0,0,0,.62), transparent 62%));
+}
+
+/* ---------- 3. Cifra descomunal ----------
+   El dato como imagen. Alineada abajo, tracking muy negativo. */
+.cifra {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--cifra-size, 150pt);
+  line-height: .74;
+  letter-spacing: -.055em;
+  color: var(--cifra-color, var(--accent));
+  display: block;
+}
+.cifra small { font-size: .42em; font-weight: 800; letter-spacing: -.03em; }
+/* trama de medio tono sobre la cifra, sin imágenes */
+.cifra--trama {
+  background-image: radial-gradient(var(--cifra-color, var(--accent)) 38%, transparent 39%);
+  background-size: 2.6px 2.6px;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+
+/* ---------- 4. Escalas extremas ----------
+   La jerarquía por contraste de tamaño, no por peso.
+   xl/xs deben diferenciarse al menos 1:8. */
+.esc-xl { font-family: var(--font-display); font-weight: 800;
+          font-size: var(--esc-xl, 64pt); line-height: .94; letter-spacing: -.04em; }
+.esc-l  { font-family: var(--font-display); font-weight: 700;
+          font-size: var(--esc-l, 26pt); line-height: 1.05; letter-spacing: -.03em; }
+.esc-xs { font-size: var(--esc-xs, 7pt); line-height: 1.35; letter-spacing: .02em; }
+.esc-micro { font-size: var(--esc-micro, 6pt); letter-spacing: .16em;
+             text-transform: uppercase; }
+
+/* ---------- 5. Juegos de retícula ----------
+   Romper la caja es un gesto, no un accidente. */
+.grid { display: grid; grid-template-columns: repeat(var(--cols), 1fr); gap: var(--gutter); }
+.grid--asim { grid-template-columns: var(--asim, 2fr 5fr 3fr); }
+.grid--desfase > *:nth-child(even) { transform: translateY(var(--desfase, 12mm)); }
+.sangre-izq { margin-left: calc(var(--margin-h) * -1); }
+.sangre-der { margin-right: calc(var(--margin-h) * -1); }
+.sangre-total { margin-left: calc(var(--margin-h) * -1);
+                margin-right: calc(var(--margin-h) * -1); width: auto; }
+.col-fuera { margin-left: calc(var(--margin-h) * -.55); }   /* se sale de la caja */
+
+/* ---------- 6. Iconografía ----------
+   SVG en línea, trazo de currentColor. Sin dependencias. */
+.ico { width: var(--ico, 6mm); height: var(--ico, 6mm); flex: 0 0 auto;
+       stroke: currentColor; fill: none; stroke-width: 1.6;
+       stroke-linecap: round; stroke-linejoin: round; }
+.ico--relleno { fill: currentColor; stroke: none; }
+.ico-caja { width: var(--ico-caja, 11mm); height: var(--ico-caja, 11mm);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; background: var(--ico-fondo, transparent);
+            border: var(--ico-borde, .6pt solid currentColor); }
+
+/* ---------- 7. Tramas y veladuras ----------
+   Textura sin imágenes: todo con gradientes. */
+.trama-diag {
+  background-image: repeating-linear-gradient(45deg,
+    currentColor 0 1px, transparent 1px 5px);
+  opacity: var(--trama-op, .9);
+}
+.trama-puntos {
+  background-image: radial-gradient(currentColor 28%, transparent 29%);
+  background-size: 3px 3px;
+}
+.velo-color { position: relative; }
+.velo-color::after { content:''; position:absolute; inset:0;
+  background: var(--accent); mix-blend-mode: multiply; opacity: var(--velo-op, .55); }
+
+/* ---------- 8. Marcas de página ----------
+   Cornisas y folios tratados como elemento gráfico. */
+.marca-lateral {
+  position: absolute; top: 50%; right: 3mm;
+  transform: translateY(-50%) rotate(90deg); transform-origin: center;
+  font-size: 6.5pt; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--muted); white-space: nowrap;
+}
